@@ -26,8 +26,8 @@ exports.sendOtp = async (req, res) => {
                 otp: otp.toString()
             })
         }
-        await mailer.sendmail({
-            user:req.query.email,
+        mailer.sendmail({
+            user: req.query.email,
             otp
         })
         // await OtpData.create({
