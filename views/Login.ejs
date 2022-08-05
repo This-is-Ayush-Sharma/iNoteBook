@@ -1,0 +1,66 @@
+<%-include('partials/header')%>
+    <div class="container-fluid h-100 w-100 d-flex justify-content-center align-items-center">
+        <div class="card mb-3 w-75 shadow-lg p-3 mb-5 bg-white rounded " style="max-width: 50rem;">
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/notebook-4048699-3369781.png" class="img-fluid rounded" alt="..." style="width: 100%;height:100%;"> 
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title h1">Login</h5>
+                        <p class="card-text">
+                            <%if(message==='Account Not Active'){%>
+                                <div class="alert alert-danger d-flex" role="alert">
+                                    <%= message %>
+                                     <!-- <a href="/sendotp">Activate your Account</a> -->
+                                    <form action="/sendotp" method="get">
+                                        <input hidden type="email" name="email" value="<%=email%>">
+                                        <input type="submit" class="border-0 bg-transparent text-decoration-underline text-primary" value="Activate your Account">
+                                    </form>
+
+                                </div>
+                            <%}%>
+                            <%if(message!=='' && message!=='Account Not Active'){%>
+                                <div class="alert alert-danger" role="alert">
+                                    <%= message %> 
+                                </div>
+                            <%}%>
+                            
+                            <form class="mt-4" method="post" action="/login">
+                                <div class="mb-3">
+                                    <div class="form-floating mb-3">
+                                        <input type="email" name="email" class="form-control" id="floatingInput"
+                                            placeholder="name@example.com" value="<%=email%>">
+                                        <label for="floatingInput">Email address</label>
+                                    </div>
+                                  <!-- <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
+                                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" name="password" class="form-control" id="floatingPassword"
+                                            placeholder="Password">
+                                        <label for="floatingPassword">Password</label>
+                                    </div>
+                                  <!-- <label for="exampleInputPassword1" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="exampleInputPassword1"> -->
+                                  <div id="emailHelp" class="form-text">Don't share your password with anyone else.</div>
+                                </div>
+                                <!-- <div class="mb-3 form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div> -->
+                                <div class="form-group">
+                                    <div id="emailHelp" class="form-text">Don't have a account? <a href="/register">Register</a></div>
+                                </div>
+                                <button type="submit" class="btn bg-primary bg-gradient text-white">Login</button>
+                              </form>
+                        </p>
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%-include('partials/footer')%>

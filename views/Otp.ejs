@@ -1,0 +1,31 @@
+<%-include('partials/header')%>
+
+<div class="container-fluid h-100 w-100 d-flex justify-content-center align-items-center">
+    <div class="card text-bg-light mb-3  shadow-lg p-3 mb-5 bg-white rounded" style="max-width: 30rem;">
+        <div class="card-header">Verify Otp</div>
+        <div class="card-body">
+          <h5 class="card-title text-center">Check your email for otp.</h5>
+          <p class="card-text">
+            <%if(message!==''){%>
+                <div class="alert alert-danger" role="alert">
+                    <%= message %>
+                </div>
+            <%}%>
+            <form action="/verify" method="post" class="p-3 w-100">
+                <div class="d-flex justify-content-around align-items-center">
+                    <input type="email" name="email" value="<%=email%>" hidden>
+                    <input name="val1" type="text" class="text-center border-2 border-primary border-top-0 border-left-0 border-right-0 ml-2" maxlength="1" size="1" style="outline: none;">
+                    <input name="val2" type="text" class="text-center border-2 border-primary border-top-0 border-left-0 border-right-0 ml-2" maxlength="1" size="1" style="outline: none;">
+                    <input name="val3" type="text" class="text-center border-2 border-primary border-top-0 border-left-0 border-right-0 ml-2" maxlength="1" size="1" style="outline: none;">
+                    <input name="val4" type="text" class="text-center border-2 border-primary border-top-0 border-left-0 border-right-0 ml-2" maxlength="1" size="1" style="outline: none;">
+                </div>
+                <div class="mt-4">
+                    <input type="submit" class="btn btn-primary" value="Verify Otp">
+                </div>
+            </form>
+
+          </p>
+        </div>
+    </div>
+</div>
+<%-include('partials/footer')%>
