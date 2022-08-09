@@ -1,0 +1,34 @@
+<%-include('partials/header')%>
+<%-include('partials/dashboard')%>
+
+<div>
+    <div class="container">
+        <section>
+            <%if(message!==''){%>
+                <div class="alert alert-danger" role="alert">
+                    <%= message %> 
+                </div>
+            <%}%>
+            <ul class="list-group list-group-horizontal align-items-stretch flex-wrap">
+                <% notes.forEach((data)=>{ %>
+                    <li class="list-group-item border-0">
+                            <div class="card my-3">
+                                <!-- <img src="http://placehold.it/560x560" class="card-img-top"> -->
+                                <div class="card-body">
+                                    <h4 class="card-title"><%=data.title%></h4>
+                                    <p class="card-text"><%=data.body%></p>
+                                    <div class="d-flex justify-content-end">
+                                        <a href="/action/ed/<%=data.id%>" class="btn btn-primary text-white mr-2" type="button">Edit</a>
+                                        <form action="/action/td/<%=data.id%>" method="post">
+                                            <input type="submit" class="btn btn-danger text-white" value="Delete">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                    </li>
+               <% }) %>
+            </ul>
+        </section>
+    </div>
+</div>
+<%-include('partials/footer')%>

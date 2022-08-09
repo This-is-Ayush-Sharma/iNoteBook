@@ -1,0 +1,21 @@
+<%-include('partials/header')%>
+<%-include('partials/dashboard')%>
+<form action="/action/ta" method="post" class="p-2">
+    <%if(message!==''){%>
+        <div class="alert alert-danger" role="alert">
+            <%= message %>
+        </div>
+    <%}%>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label h1">Title</label><span class="h3"> Of notes</span>
+        <textarea name="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title" row="1"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label h3">Write</label><span class="h5"> your notes here</span>
+        <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="12"></textarea>
+      </div>
+      <div class="d-flex justify-content-end">
+        <input type="submit" value="Submit" class="btn btn-primary ">
+      </div>
+</form>
+<%-include('partials/footer')%>

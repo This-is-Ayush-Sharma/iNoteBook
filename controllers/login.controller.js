@@ -25,7 +25,11 @@ exports.ActionLoginPage = async (req, res) => {
 
         if (await crypt.decode(user.password, password)) {
             if (user.status === 'ACTIVE') {
-                const token = await tokenGen.genToken(req.body.email);
+                const token = await tokenGen.genToken({
+                    email:user.email,
+                    firstName:user.firstName,
+                    lastName:user.lastName
+                });
                 // console.log(token);
                 res.cookie("token", token);
                 return res.redirect('/dashboard');

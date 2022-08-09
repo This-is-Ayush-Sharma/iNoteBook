@@ -3,22 +3,23 @@ const app = express();
 
 // middlewares
 const isAuthenticated = require('./middleware/authUser');
+
 //Controllers.
+
 const LoginController = require('./controllers/login.controller');
 const RegsiterController = require('./controllers/register.controller');
 const dashboardController = require('./controllers/auth.controller');
-const otpauth = require('./controllers/otp.controller')
+const otpauth = require('./controllers/otp.controller');
+const NotesController = require('./controllers/notes.controller');
+
 // app status
 app.get("/health",(req,res)=>{
     console.log("The Server is up and running");
     res.send("The Server is up and running");
 });
-// app.get('/',(req,res)=>{
-//     res.render('Login',{
-//         message:"",
-//         email:""
-//     })
-// })
+app.get('/',(req,res)=>{
+    return res.redirect('/login');
+})
 
 //otp auth
 app.get('/sendotp',otpauth.sendOtp);
@@ -41,4 +42,18 @@ app.post('/register',RegsiterController.actionRegisterpPage);
 
 // dashboard route.
 app.get('/dashboard',isAuthenticated.isAuthenticated,dashboardController.dashboard);
+
+
+                        //Notes
+//add action
+app.get('/action/ta',isAuthenticated.isAuthenticated,NotesController.AddNotes);
+app.post('/action/ta',isAuthenticated.isAuthenticated,NotesController.actionAddNotes);
+
+//delete action
+app.post('/action/td/:id',isAuthenticated.isAuthenticated,NotesController.actionDelete);
+
+//edit action
+app.get('/action/ed/:id',isAuthenticated.isAuthenticated,NotesController.EditPage);
+app.post('/action/ed/:id',isAuthenticated.isAuthenticated,NotesController.actionEditPage);
+
 module.exports = app
