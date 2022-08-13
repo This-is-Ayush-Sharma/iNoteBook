@@ -16,8 +16,16 @@
                                 <!-- <img src="http://placehold.it/560x560" class="card-img-top"> -->
                                 <div class="card-body">
                                     <h4 class="card-title"><%=data.title%></h4>
-                                    <p class="card-text"><%=data.body%></p>
+                                    <p class="card-text">
+                                        <textarea readonly class="form-control" id="" rows="<%=(data.body).match(/^/gm).length/3%>"><%=data.body%></textarea>
+                                    </p>
                                     <div class="d-flex justify-content-end">
+                                        <form action="/action/sm/<%=data.id%>" method="post">
+                                            <input type="submit" class="btn btn-success text-white mr-2" value="Send By Email">
+                                        </form>
+                                        <form action="/action/hr/<%=data.id%>" method="post">
+                                            <input type="submit" class="btn btn-warning text-white mr-2" value="Convert to HandWritten">
+                                        </form>
                                         <a href="/action/ed/<%=data.id%>" class="btn btn-primary text-white mr-2" type="button">Edit</a>
                                         <form action="/action/td/<%=data.id%>" method="post">
                                             <input type="submit" class="btn btn-danger text-white" value="Delete">

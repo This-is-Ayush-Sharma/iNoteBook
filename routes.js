@@ -11,6 +11,8 @@ const RegsiterController = require('./controllers/register.controller');
 const dashboardController = require('./controllers/auth.controller');
 const otpauth = require('./controllers/otp.controller');
 const NotesController = require('./controllers/notes.controller');
+const HandWritten = require('./controllers/Handwritten.controller');
+const sendNotes = require('./controllers/emailNotes.controller');
 
 // app status
 app.get("/health",(req,res)=>{
@@ -55,5 +57,11 @@ app.post('/action/td/:id',isAuthenticated.isAuthenticated,NotesController.action
 //edit action
 app.get('/action/ed/:id',isAuthenticated.isAuthenticated,NotesController.EditPage);
 app.post('/action/ed/:id',isAuthenticated.isAuthenticated,NotesController.actionEditPage);
+
+//HandWritten action
+app.post('/action/hr/:id',isAuthenticated.isAuthenticated,HandWritten.ConvertAndDownload);
+
+// send notes by email
+app.post('/action/sm/:id',isAuthenticated.isAuthenticated,sendNotes.SendEmail);
 
 module.exports = app
